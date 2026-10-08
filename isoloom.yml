@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# OWASP WrongSecrets (by Jeroen Willemsen and the OWASP WrongSecrets contributors): an app full of
+# badly stored secrets, with challenges on finding them in code, containers, configuration,
+# binaries and more. This is upstream's Docker variant (no vault, no cloud): the challenges that
+# need Kubernetes, Vault or a cloud account show as unavailable. Source:
+# https://github.com/OWASP/wrongsecrets, vendored in build/wrongsecrets/app/, built by its own
+# Dockerfile (plus a stage that builds the jar). `isoloom generate`, then `isoloom up docker`.
+version: 1
+name: wrongsecrets
+
+networks:
+  lab: { cidr: 10.60.123.0/24 }
+
+machines:
+  wrongsecrets:
+    networks: { lab: 10 }
+    services:
+      - { port: 8080, name: web, http: true, publish: 8080 }
+      - { port: 8090, name: mcp, http: true, publish: 8090 }
+    resources: { cpus: 2, memory_mb: 2048 }
+    docker:
+      build: build/wrongsecrets
+
+checks:
+  - { name: the app answers, http: "http://wrongsecrets:8080/", wait: 300 }
+  - { name: the first challenge answers, http: "http://wrongsecrets:8080/challenge/challenge-1" }
+  - checks/wrongsecrets.sh
+
+message: |
+  OWASP WrongSecrets answers at http://localhost:{{ machines.wrongsecrets.services.0.publish }}/.
+  Start with challenge 1 ("Find the hardcoded password"); the challenges marked for Docker all
+  run here. Its MCP server (challenge 60) answers on port {{ machines.wrongsecrets.services.1.publish }}.

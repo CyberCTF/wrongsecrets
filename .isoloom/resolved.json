@@ -1,0 +1,148 @@
+{
+  "generated_by_isoloom": "from isoloom.yml; don't edit: change the spec and run `isoloom generate` (`isoloom check` fails when this file is out of date)",
+  "resolved_version": 1,
+  "name": "wrongsecrets",
+  "instance": null,
+  "inputs": [],
+  "networks": {
+    "lab": {
+      "cidr": "10.60.123.0/24",
+      "docker_cidr": "10.60.123.0/24",
+      "internet": true,
+      "gateway": null,
+      "gateway_address": "10.60.123.1",
+      "router": null,
+      "controller": "10.60.123.253"
+    }
+  },
+  "reach": [],
+  "machines": {
+    "wrongsecrets": {
+      "access": false,
+      "supplied": false,
+      "shapes": [
+        "docker"
+      ],
+      "arch": "amd64",
+      "os": null,
+      "windows": false,
+      "addresses": {
+        "lab": "10.60.123.10"
+      },
+      "docker_addresses": {
+        "lab": "10.60.123.10"
+      },
+      "services": [
+        {
+          "port": 8080,
+          "name": "web",
+          "http": true,
+          "publish": 8080
+        },
+        {
+          "port": 8090,
+          "name": "mcp",
+          "http": true,
+          "publish": 8090
+        }
+      ],
+      "depends_on": [],
+      "inputs": [],
+      "volumes": {},
+      "resources": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "disk_gb": 20
+      },
+      "gateway_of": [],
+      "routes": [],
+      "default_gateway": null,
+      "offline": false
+    }
+  },
+  "start_order": [
+    "wrongsecrets"
+  ],
+  "clones": {},
+  "tools": {},
+  "groups": {},
+  "router": null,
+  "controller": {
+    "addresses": {
+      "lab": "10.60.123.253"
+    }
+  },
+  "published": [
+    {
+      "machine": "wrongsecrets",
+      "port": 8080,
+      "host_port": 8080
+    },
+    {
+      "machine": "wrongsecrets",
+      "port": 8090,
+      "host_port": 8090
+    }
+  ],
+  "targets": {
+    "possible": [
+      "docker",
+      "hosted",
+      "docker-vm",
+      "cloud-docker",
+      "kubernetes"
+    ],
+    "generated": [
+      "docker",
+      "hosted",
+      "docker-vm",
+      "cloud-docker",
+      "kubernetes"
+    ],
+    "refused": {},
+    "not_possible": {
+      "hybrid": "only when some machines are containers and others are VMs",
+      "vagrant": "needs `vm:` on wrongsecrets",
+      "proxmox": "needs `vm:` on wrongsecrets",
+      "cloud-vm": "needs `vm:` on wrongsecrets",
+      "external": "needs `external:` on wrongsecrets"
+    }
+  },
+  "checks": {
+    "default_position": "networks",
+    "positions": [
+      {
+        "position": "networks",
+        "machine": null,
+        "runner": "isoloom-check",
+        "checks": [
+          {
+            "name": "the app answers",
+            "derived": false,
+            "kind": "http",
+            "target": "http://wrongsecrets:8080/",
+            "expect": "200",
+            "wait": 300
+          },
+          {
+            "name": "the first challenge answers",
+            "derived": false,
+            "kind": "http",
+            "target": "http://wrongsecrets:8080/challenge/challenge-1",
+            "expect": "200",
+            "wait": 30
+          },
+          {
+            "name": "checks/wrongsecrets.sh",
+            "derived": false,
+            "kind": "script",
+            "target": "checks/wrongsecrets.sh",
+            "expect": "",
+            "wait": 0
+          }
+        ]
+      }
+    ]
+  },
+  "message": "OWASP WrongSecrets answers at http://localhost:8080/.\nStart with challenge 1 (\"Find the hardcoded password\"); the challenges marked for Docker all\nrun here. Its MCP server (challenge 60) answers on port 8090.\n"
+}

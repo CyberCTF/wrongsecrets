@@ -1,0 +1,9 @@
+{
+  "title": "OWASP WrongSecrets",
+  "description": "OWASP's app of badly stored secrets: dozens of challenges on finding secrets hardcoded in code, front-end JavaScript, container images and environment, configuration files, logs, Git history and compiled binaries. This is the Docker variant; the Kubernetes, Vault and cloud challenges are not available.",
+  "question": "Find the secrets of the WrongSecrets challenges.",
+  "category": "MISC",
+  "difficulty": 2,
+  "evidence_kind": "SECRET",
+  "capabilities": ["secret-discovery", "reverse-engineering", "container-inspection", "source-code-review"]
+}

@@ -1,0 +1,169 @@
+name: Test minikube script (k8s)
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-minikube:
+    name: Test with minikube
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Start minikube
+        uses: medyagh/setup-minikube@master
+        with:
+          minikube-version: 1.39.0
+          driver: docker
+          kubernetes-version: v1.36.0
+
+      - name: Deploy test environment
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          kubectl apply -f k8s/workspace-psa.yml
+
+          echo "Setting up the Bitnami Sealed Secrets controller"
+
+          kubectl apply \
+            -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.27.0/controller.yaml
+
+          kubectl apply -f k8s/sealed-secret-controller.yaml
+          kubectl apply -f k8s/main.key
+
+          # Restart controller so the test key is picked up
+          kubectl delete pod \
+            -n kube-system \
+            -l name=sealed-secrets-controller \
+            --ignore-not-found
+
+          # Wait for controller to come back
+          kubectl rollout status \
+            deployment/sealed-secrets-controller \
+            -n kube-system \
+            --timeout=120s
+
+          kubectl create -f k8s/sealed-challenge48.json
+
+          echo "Finishing Sealed Secrets setup"
+
+          kubectl apply -f k8s/secrets-config.yml
+          kubectl apply -f k8s/secrets-secret.yml
+          kubectl apply -f k8s/challenge33.yml
+          kubectl apply -f k8s/secret-challenge-deployment.yml
+          kubectl apply -f k8s/challenge53/secret-challenge53.yml
+          echo "Deploy wrongsecrets-llama app"
+          kubectl apply -f k8s/challenge74/wrongsecrets-llama-secret.yaml
+          kubectl apply -f k8s/challenge74/wrongsecrets-llama-service.yaml
+          kubectl apply -f k8s/challenge74/wrongsecrets-llama-deployment.yaml
+          while [[ $(kubectl get pods -l app=challenge74-llama -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do
+            echo "waiting for wrongsecrets-llama" && sleep 2
+          done
+          kubectl get pods -l app=challenge74-llama
+          kubectl logs deployment/challenge74-llama
+      - name: Wait for application
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          kubectl rollout status \
+            deployment/secret-challenge \
+            --timeout=180s
+
+          kubectl wait \
+            --for=condition=ready \
+            pod \
+            -l app=secret-challenge \
+            --timeout=180s
+
+      - name: Start port forwarding
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          POD=$(kubectl get pod \
+            -l app=secret-challenge \
+            -o jsonpath="{.items[0].metadata.name}")
+
+          echo "Forwarding pod $POD"
+
+          kubectl port-forward \
+            "$POD" \
+            8080:8080 \
+            8090:8090 \
+            > port-forward.log 2>&1 &
+
+          echo $! > port-forward.pid
+
+          # Wait until the application is actually reachable
+          for i in {1..30}; do
+            if curl --fail --silent --show-error \
+              http://localhost:8080/ > /dev/null; then
+              echo "Application is reachable"
+              exit 0
+            fi
+
+            echo "Waiting for application..."
+            sleep 2
+          done
+
+          echo "Application did not become reachable"
+          cat port-forward.log
+          exit 1
+
+      - name: Test challenges
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for challenge in 5 6 7 33; do
+            echo "Testing challenge-$challenge"
+
+            if curl \
+              --fail \
+              --silent \
+              --show-error \
+              --retry 5 \
+              --retry-delay 2 \
+              "http://localhost:8080/spoil/challenge-$challenge" \
+              | grep -q spoiler-answer
+            then
+              echo "spoil-challenge-$challenge works"
+            else
+              echo "ERROR: spoil-challenge-$challenge failed"
+              exit 1
+            fi
+          done
+
+      - name: Show application logs
+        if: always()
+        run: |
+          echo "=== Application logs ==="
+          kubectl logs \
+            -l app=secret-challenge \
+            --all-containers=true \
+            --tail=500 \
+            || true
+
+          echo "=== Pods ==="
+          kubectl get pods -A -o wide || true
+
+          echo "=== Deployments ==="
+          kubectl get deployments -A || true
+
+          echo "=== Events ==="
+          kubectl get events \
+            --sort-by=.lastTimestamp \
+            || true
