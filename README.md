@@ -14,7 +14,7 @@ finding them. This repository runs its Docker variant with [Isoloom](https://www
 
 ```bash
 isoloom generate
-isoloom up docker
+isoloom run docker
 ```
 
 Then open http://localhost:8080/. This is upstream's `-no-vault` Docker variant: the challenges
