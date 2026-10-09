@@ -4,6 +4,5 @@
   "question": "Find the secrets of the WrongSecrets challenges.",
   "category": "MISC",
   "difficulty": 2,
-  "evidence_kind": "SECRET",
-  "capabilities": ["secret-discovery", "reverse-engineering", "container-inspection", "source-code-review"]
+  "evidence_kind": "SECRET"
 }
