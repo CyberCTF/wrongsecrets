@@ -9,6 +9,9 @@ services:
   wrongsecrets:
     build:
       context: ../../build/wrongsecrets
+      labels:
+        isoloom.managed: 'true'
+        isoloom.environment: wrongsecrets
     image: isoloom/wrongsecrets-wrongsecrets
     platform: linux/amd64
     hostname: wrongsecrets
@@ -42,6 +45,8 @@ services:
     labels:
       isoloom.service.web: http:8080
       isoloom.service.mcp: http:8090
+      isoloom.managed: 'true'
+      isoloom.environment: wrongsecrets
     restart: unless-stopped
   isoloom-check:
     image: curlimages/curl:8.11.1
@@ -58,6 +63,9 @@ services:
     depends_on:
       wrongsecrets:
         condition: service_healthy
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: wrongsecrets
   isoloom-probe-amd64:
     image: busybox:1.37.0-musl
     platform: linux/amd64
@@ -69,11 +77,20 @@ services:
     - isoloom-probe-amd64:/probe
     network_mode: none
     restart: no
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: wrongsecrets
 networks:
   lab:
     ipam:
       config:
       - subnet: 10.60.123.0/24
         gateway: 10.60.123.1
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: wrongsecrets
 volumes:
-  isoloom-probe-amd64: {}
+  isoloom-probe-amd64:
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: wrongsecrets

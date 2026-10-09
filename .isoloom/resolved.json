@@ -105,7 +105,8 @@
       "vagrant": "needs `vm:` on wrongsecrets",
       "proxmox": "needs `vm:` on wrongsecrets",
       "cloud-vm": "needs `vm:` on wrongsecrets",
-      "external": "needs `external:` on wrongsecrets"
+      "external": "needs `external:` on wrongsecrets",
+      "cloud-services": "left out by `targets:`"
     }
   },
   "checks": {
