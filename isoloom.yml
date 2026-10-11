@@ -4,9 +4,15 @@
 # binaries and more. This is upstream's Docker variant (no vault, no cloud): the challenges that
 # need Kubernetes, Vault or a cloud account show as unavailable. Source:
 # https://github.com/OWASP/wrongsecrets, vendored in build/wrongsecrets/app/, built by its own
-# Dockerfile (plus a stage that builds the jar). `isoloom generate`, then `isoloom up docker`.
+# Dockerfile (plus a stage that builds the jar). It runs in CTF mode: each solved challenge gives
+# a code, HMAC-SHA1(key, challenge name), the key set from CTF_FLAG_CTF_KEY by the overlay's
+# ctf-entrypoint.sh. `isoloom generate`, then `isoloom up docker`.
 version: 1
 name: wrongsecrets
+
+# Given by the CyberCTF launcher: this player's key, from which every challenge code derives.
+# Without it, upstream's default ctf_key (the development key).
+inputs: [CTF_FLAG_CTF_KEY]
 
 networks:
   lab: { cidr: 10.60.123.0/24 }
@@ -18,6 +24,7 @@ machines:
       - { port: 8080, name: web, http: true, publish: 8080 }
       - { port: 8090, name: mcp, http: true, publish: 8090 }
     resources: { cpus: 2, memory_mb: 2048 }
+    inputs: [CTF_FLAG_CTF_KEY]
     docker:
       build: build/wrongsecrets
 
@@ -30,3 +37,4 @@ message: |
   OWASP WrongSecrets answers at http://localhost:{{ machines.wrongsecrets.services.0.publish }}/.
   Start with challenge 1 ("Find the hardcoded password"); the challenges marked for Docker all
   run here. Its MCP server (challenge 60) answers on port {{ machines.wrongsecrets.services.1.publish }}.
+  Each solved challenge gives a code: submit it to CyberCTF.

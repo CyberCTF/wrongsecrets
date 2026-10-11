@@ -3,7 +3,9 @@
   "resolved_version": 1,
   "name": "wrongsecrets",
   "instance": null,
-  "inputs": [],
+  "inputs": [
+    "CTF_FLAG_CTF_KEY"
+  ],
   "networks": {
     "lab": {
       "cidr": "10.60.123.0/24",
@@ -47,7 +49,9 @@
         }
       ],
       "depends_on": [],
-      "inputs": [],
+      "inputs": [
+        "CTF_FLAG_CTF_KEY"
+      ],
       "volumes": {},
       "resources": {
         "cpus": 2,
@@ -145,5 +149,5 @@
       }
     ]
   },
-  "message": "OWASP WrongSecrets answers at http://localhost:8080/.\nStart with challenge 1 (\"Find the hardcoded password\"); the challenges marked for Docker all\nrun here. Its MCP server (challenge 60) answers on port 8090.\n"
+  "message": "OWASP WrongSecrets answers at http://localhost:8080/.\nStart with challenge 1 (\"Find the hardcoded password\"); the challenges marked for Docker all\nrun here. Its MCP server (challenge 60) answers on port 8090.\nEach solved challenge gives a code: submit it to CyberCTF.\n"
 }

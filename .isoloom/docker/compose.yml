@@ -18,6 +18,8 @@ services:
     networks:
       lab:
         ipv4_address: 10.60.123.10
+    environment:
+      CTF_FLAG_CTF_KEY: ${CTF_FLAG_CTF_KEY:-}
     ports:
     - ${ISOLOOM_PUBLISH_ADDRESS:-127.0.0.1}:${ISOLOOM_PUBLISH_FIXED:+8080}:8080
     - ${ISOLOOM_PUBLISH_ADDRESS:-127.0.0.1}:${ISOLOOM_PUBLISH_FIXED:+8090}:8090

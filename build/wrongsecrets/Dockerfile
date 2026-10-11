@@ -11,6 +11,8 @@
 # - The release script gives the build a secret (`--secret id=mysecret`, value
 #   "youCantHandleThisSecret") that the image writes to /var/run/secrets2/secret.txt; Isoloom
 #   builds take no secrets, so that same value is written directly.
+# - CyberCTF per-player key: ctf-entrypoint.sh runs first (at the end), puts the app in CTF mode
+#   with the player's key, then runs the original entrypoint and command.
 FROM eclipse-temurin:26-jdk AS jar
 RUN apt-get update && apt-get install -y --no-install-recommends libatomic1 && rm -rf /var/lib/apt/lists/*
 WORKDIR /src
@@ -100,4 +102,10 @@ RUN rm -rf /var/run/secrets/kubernetes.io
 RUN adduser -u 2000 -D wrongsecrets
 USER wrongsecrets
 
+CMD java -jar -XX:SharedArchiveFile=application.jsa -Dspring.profiles.active=$(echo ${SPRING_PROFILES_ACTIVE}) -Dspringdoc.swagger-ui.enabled=${SPRINGDOC_UI} -Dspringdoc.api-docs.enabled=${SPRINGDOC_DOC} -D application.jar
+
+# CyberCTF per-player key: ctf-entrypoint.sh gives the app the player's key (CTF_FLAG_CTF_KEY)
+# and turns CTF mode on, then runs the base image's entrypoint and the command above, unchanged.
+COPY --chmod=755 ctf-entrypoint.sh /usr/local/bin/ctf-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/ctf-entrypoint.sh", "/__cacert_entrypoint.sh"]
 CMD java -jar -XX:SharedArchiveFile=application.jsa -Dspring.profiles.active=$(echo ${SPRING_PROFILES_ACTIVE}) -Dspringdoc.swagger-ui.enabled=${SPRINGDOC_UI} -Dspringdoc.api-docs.enabled=${SPRINGDOC_DOC} -D application.jar

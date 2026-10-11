@@ -6,6 +6,7 @@
 # Images built from the project, before starting (a local cluster sharing Docker's images:
 # OrbStack, Docker Desktop; elsewhere, push them to a registry the cluster pulls from):
 #   docker build -t isoloom/wrongsecrets-wrongsecrets build/wrongsecrets
+# Inputs (optional, unset ones are empty): kubectl -n isoloom-wrongsecrets create secret generic isoloom-inputs --from-literal=CTF_FLAG_CTF_KEY=…
 
 apiVersion: v1
 kind: Namespace
@@ -56,6 +57,13 @@ spec:
             - /.isoloom-probe/busybox nc -z -w 2 127.0.0.1 8080 && /.isoloom-probe/busybox nc -z -w 2 127.0.0.1 8090
           periodSeconds: 5
           failureThreshold: 60
+        env:
+        - name: CTF_FLAG_CTF_KEY
+          valueFrom:
+            secretKeyRef:
+              name: isoloom-inputs
+              key: CTF_FLAG_CTF_KEY
+              optional: true
         resources:
           limits:
             cpu: '2'

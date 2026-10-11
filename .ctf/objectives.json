@@ -1,0 +1,879 @@
+{
+  "objectives": [
+    {
+      "key": "ctf-key",
+      "role": "key",
+      "title": "CTF key",
+      "check": {
+        "evidence": "SECRET"
+      },
+      "dev": "TRwzkRJnHOTckssAeyJbysWgP!Qc2T"
+    },
+    {
+      "key": "challenge-0",
+      "title": "Challenge 0: Opening Challenge",
+      "prompt": "Find the secret of WrongSecrets challenge 0 (Opening Challenge; Intro, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 0",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "The answer is in front of you on the challenge page."
+      ]
+    },
+    {
+      "key": "challenge-1",
+      "title": "Challenge 1: Centralized hardcoded password",
+      "prompt": "Find the secret of WrongSecrets challenge 1 (Centralized hardcoded password; Git, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 1",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "A hardcoded secret in the application's source code; the source is public."
+      ]
+    },
+    {
+      "key": "challenge-2",
+      "title": "Challenge 2: Hardcoded password part 2",
+      "prompt": "Find the secret of WrongSecrets challenge 2 (Hardcoded password part 2; Git, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 2",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Another secret committed to the repository, this time in a file rather than in code."
+      ]
+    },
+    {
+      "key": "challenge-3",
+      "title": "Challenge 3: Docker ENV based password",
+      "prompt": "Find the secret of WrongSecrets challenge 3 (Docker ENV based password; Docker, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 3",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Container image configuration: environment variables baked into the image."
+      ]
+    },
+    {
+      "key": "challenge-12",
+      "title": "Challenge 12: Docker COPY and WORKDIR",
+      "prompt": "Find the secret of WrongSecrets challenge 12 (Docker COPY and WORKDIR; Docker, hard) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 12",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Files the Dockerfile copies into the image's working directory."
+      ]
+    },
+    {
+      "key": "challenge-14",
+      "title": "Challenge 14: Password Managers",
+      "prompt": "Find the secret of WrongSecrets challenge 14 (Password Managers; Password Manager, expert) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 14",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "A password manager database committed to the repository, protected by a weak master password."
+      ]
+    },
+    {
+      "key": "challenge-15",
+      "title": "Challenge 15: Git history",
+      "prompt": "Find the secret of WrongSecrets challenge 15 (Git history; Git, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 15",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Git history keeps what a later commit removed."
+      ]
+    },
+    {
+      "key": "challenge-16",
+      "title": "Challenge 16: Secrets in front-end code",
+      "prompt": "Find the secret of WrongSecrets challenge 16 (Secrets in front-end code; Front-end, hard) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 16",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Look at what the browser receives: the front-end JavaScript."
+      ]
+    },
+    {
+      "key": "challenge-17",
+      "title": "Challenge 17: Bash history",
+      "prompt": "Find the secret of WrongSecrets challenge 17 (Bash history; Docker, hard) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 17",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Shell history files left in the container's home directory."
+      ]
+    },
+    {
+      "key": "challenge-19",
+      "title": "Challenge 19: Hiding in binaries part 1: the C binary",
+      "prompt": "Find the secret of WrongSecrets challenge 19 (Hiding in binaries part 1: the C binary; Binary, expert) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 19",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Strings embedded in a compiled binary shipped with the app."
+      ]
+    },
+    {
+      "key": "challenge-23",
+      "title": "Challenge 23: Secrets in front-end code part 2",
+      "prompt": "Find the secret of WrongSecrets challenge 23 (Secrets in front-end code part 2; Front-end, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 23",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Look at the source of the challenge page itself."
+      ]
+    },
+    {
+      "key": "challenge-24",
+      "title": "Challenge 24: Cryptographic challenge part 2",
+      "prompt": "Find the secret of WrongSecrets challenge 24 (Cryptographic challenge part 2; Cryptography, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 24",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "A value in the challenge text: identify how it is encoded."
+      ]
+    },
+    {
+      "key": "challenge-42",
+      "title": "Challenge 42: Spring Boot Actuator Audit Event",
+      "prompt": "Find the secret of WrongSecrets challenge 42 (Spring Boot Actuator Audit Event; Logging, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 42",
+          "encoding": "hex"
+        }
+      },
+      "hints": [
+        "Spring Boot Actuator endpoints can expose audit events."
+      ]
+    },
+    {
+      "key": "challenge-4",
+      "title": "Challenge 4: Docker arg based password",
+      "prompt": "Find the secret of WrongSecrets challenge 4 (Docker arg based password; AI, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 4",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-8",
+      "title": "Challenge 8: Generating random values",
+      "prompt": "Find the secret of WrongSecrets challenge 8 (Generating random values; Logging, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 8",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-13",
+      "title": "Challenge 13: Github Forkable actions",
+      "prompt": "Find the secret of WrongSecrets challenge 13 (Github Forkable actions; CI/CD, hard) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 13",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-18",
+      "title": "Challenge 18: Bad hashing",
+      "prompt": "Find the secret of WrongSecrets challenge 18 (Bad hashing; Cryptography, master) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 18",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-20",
+      "title": "Challenge 20: Hiding in binaries part 2: the C++ binary",
+      "prompt": "Find the secret of WrongSecrets challenge 20 (Hiding in binaries part 2: the C++ binary; Binary, expert) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 20",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-21",
+      "title": "Challenge 21: Hiding in binaries part 3: the Go binary",
+      "prompt": "Find the secret of WrongSecrets challenge 21 (Hiding in binaries part 3: the Go binary; Binary, master) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 21",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-22",
+      "title": "Challenge 22: Hiding in binaries part 4: the Rust binary",
+      "prompt": "Find the secret of WrongSecrets challenge 22 (Hiding in binaries part 4: the Rust binary; Binary, master) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 22",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-25",
+      "title": "Challenge 25: Secrets in smart contracts part 1",
+      "prompt": "Find the secret of WrongSecrets challenge 25 (Secrets in smart contracts part 1; Web3, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 25",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-26",
+      "title": "Challenge 26: Secrets in smart contracts part 2",
+      "prompt": "Find the secret of WrongSecrets challenge 26 (Secrets in smart contracts part 2; Web3, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 26",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-27",
+      "title": "Challenge 27: Secrets in smart contracts part 3",
+      "prompt": "Find the secret of WrongSecrets challenge 27 (Secrets in smart contracts part 3; Web3, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 27",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-28",
+      "title": "Challenge 28: Secret in a closed github issue",
+      "prompt": "Find the secret of WrongSecrets challenge 28 (Secret in a closed github issue; Documentation, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 28",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-29",
+      "title": "Challenge 29: Secret in a screenshot of a GitHub issue",
+      "prompt": "Find the secret of WrongSecrets challenge 29 (Secret in a screenshot of a GitHub issue; Documentation, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 29",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-30",
+      "title": "Challenge 30: Another Client Secret",
+      "prompt": "Find the secret of WrongSecrets challenge 30 (Another Client Secret; Front-end, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 30",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-31",
+      "title": "Challenge 31: Secret in a web page",
+      "prompt": "Find the secret of WrongSecrets challenge 31 (Secret in a web page; Front-end, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 31",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-32",
+      "title": "Challenge 32: A Secret uploaded to an LLM (Large Language Model) application",
+      "prompt": "Find the secret of WrongSecrets challenge 32 (A Secret uploaded to an LLM (Large Language Model) application; AI, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 32",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-34",
+      "title": "Challenge 34: Generating Random Keys",
+      "prompt": "Find the secret of WrongSecrets challenge 34 (Generating Random Keys; Cryptography, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 34",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-35",
+      "title": "Challenge 35: Reporting on Vulnerabilities",
+      "prompt": "Find the secret of WrongSecrets challenge 35 (Reporting on Vulnerabilities; Documentation, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 35",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-36",
+      "title": "Challenge 36: Binaries without plaintext strings",
+      "prompt": "Find the secret of WrongSecrets challenge 36 (Binaries without plaintext strings; Binary, master) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 36",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-37",
+      "title": "Challenge 37: Giving your security tests access",
+      "prompt": "Find the secret of WrongSecrets challenge 37 (Giving your security tests access; CI/CD, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 37",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-38",
+      "title": "Challenge 38: Git Notes",
+      "prompt": "Find the secret of WrongSecrets challenge 38 (Git Notes; Git, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 38",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-39",
+      "title": "Challenge 39: Insecure Encryption Key - Part 1",
+      "prompt": "Find the secret of WrongSecrets challenge 39 (Insecure Encryption Key - Part 1; Cryptography, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 39",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-40",
+      "title": "Challenge 40: Insecure Encryption Key - Part 2",
+      "prompt": "Find the secret of WrongSecrets challenge 40 (Insecure Encryption Key - Part 2; Cryptography, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 40",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-41",
+      "title": "Challenge 41: Password Shucking",
+      "prompt": "Find the secret of WrongSecrets challenge 41 (Password Shucking; Cryptography, hard) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 41",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-43",
+      "title": "Challenge 43: Reddit Blunder",
+      "prompt": "Find the secret of WrongSecrets challenge 43 (Reddit Blunder; Documentation, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 43",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-49",
+      "title": "Challenge 49: Cracking AES Encryption with a Weak MD5 Key",
+      "prompt": "Find the secret of WrongSecrets challenge 49 (Cracking AES Encryption with a Weak MD5 Key; Cryptography, hard) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 49",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-50",
+      "title": "Challenge 50: Hiding in binaries revisited: .NET self contained runtime",
+      "prompt": "Find the secret of WrongSecrets challenge 50 (Hiding in binaries revisited: .NET self contained runtime; Binary, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 50",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-51",
+      "title": "Challenge 51: Exposed Docker Secrets Challenge",
+      "prompt": "Find the secret of WrongSecrets challenge 51 (Exposed Docker Secrets Challenge; Secrets, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 51",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-52",
+      "title": "Challenge 52: Exposed Buildx Secrets Challenge",
+      "prompt": "Find the secret of WrongSecrets challenge 52 (Exposed Buildx Secrets Challenge; Secrets, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 52",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-54",
+      "title": "Challenge 54: .gitignore Secret Challenge",
+      "prompt": "Find the secret of WrongSecrets challenge 54 (.gitignore Secret Challenge; Secrets, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 54",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-55",
+      "title": "Challenge 55: .ssh Bastion?",
+      "prompt": "Find the secret of WrongSecrets challenge 55 (.ssh Bastion?; Secrets, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 55",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-56",
+      "title": "Challenge 56: Find the Secret in the Project Specification",
+      "prompt": "Find the secret of WrongSecrets challenge 56 (Find the Secret in the Project Specification; AI, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 56",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-57",
+      "title": "Challenge 57: JavaScript-based In-Browser LLM Challenge",
+      "prompt": "Find the secret of WrongSecrets challenge 57 (JavaScript-based In-Browser LLM Challenge; AI, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 57",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-58",
+      "title": "Challenge 58: Database Connection String Exposure in Error Messages",
+      "prompt": "Find the secret of WrongSecrets challenge 58 (Database Connection String Exposure in Error Messages; Logging, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 58",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-59",
+      "title": "Challenge 59: Find the Slack Webhook URL",
+      "prompt": "Find the secret of WrongSecrets challenge 59 (Find the Slack Webhook URL; CI/CD, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 59",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-60",
+      "title": "Challenge 60: MCP Server Environment Variable Exposure",
+      "prompt": "Find the secret of WrongSecrets challenge 60 (MCP Server Environment Variable Exposure; AI, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 60",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-61",
+      "title": "Challenge 61: Telegram Channel Secrets",
+      "prompt": "Find the secret of WrongSecrets challenge 61 (Telegram Channel Secrets; Git, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 61",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-62",
+      "title": "Challenge 62: MCP Server Privilege Escalation via Google Service Account",
+      "prompt": "Find the secret of WrongSecrets challenge 62 (MCP Server Privilege Escalation via Google Service Account; AI, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 62",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-63",
+      "title": "Challenge 63: Hardcoded Encryption Key Challenge",
+      "prompt": "Find the secret of WrongSecrets challenge 63 (Hardcoded Encryption Key Challenge; Cryptography, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 63",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-64",
+      "title": "Challenge 64: Hiding in binaries part 5: the Swift binary",
+      "prompt": "Find the secret of WrongSecrets challenge 64 (Hiding in binaries part 5: the Swift binary; Binary, master) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 64",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-65",
+      "title": "Challenge 65: Hiding in binaries part 6: the plain Java CLI",
+      "prompt": "Find the secret of WrongSecrets challenge 65 (Hiding in binaries part 6: the plain Java CLI; Binary, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 65",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-66",
+      "title": "Challenge 66: Hiding in binaries part 7: the obfuscated Java CLI",
+      "prompt": "Find the secret of WrongSecrets challenge 66 (Hiding in binaries part 7: the obfuscated Java CLI; Binary, master) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 66",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-68",
+      "title": "Challenge 68: AI Chat Secret Leak",
+      "prompt": "Find the secret of WrongSecrets challenge 68 (AI Chat Secret Leak; AI, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 68",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-69",
+      "title": "Challenge 69: Find the Secret in the Cursor Skill",
+      "prompt": "Find the secret of WrongSecrets challenge 69 (Find the Secret in the Cursor Skill; AI, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 69",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-70",
+      "title": "Challenge 70: Find the Secret in the Claude Skill Bundle",
+      "prompt": "Find the secret of WrongSecrets challenge 70 (Find the Secret in the Claude Skill Bundle; AI, normal) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 70",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-71",
+      "title": "Challenge 71: Dev Container Secret Leak",
+      "prompt": "Find the secret of WrongSecrets challenge 71 (Dev Container Secret Leak; Docker, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 71",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-72",
+      "title": "Challenge 72: Find the Secret in the AI Coding-Agent Transcript",
+      "prompt": "Find the secret of WrongSecrets challenge 72 (Find the Secret in the AI Coding-Agent Transcript; AI, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 72",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    },
+    {
+      "key": "challenge-73",
+      "title": "Challenge 73: Find the Secret in the Agent Instruction Files",
+      "prompt": "Find the secret of WrongSecrets challenge 73 (Find the Secret in the Agent Instruction Files; AI, easy) and enter it on the challenge page. Submit the code the app gives back.",
+      "check": {
+        "keyed": {
+          "key_objective": "ctf-key",
+          "algorithm": "hmac-sha1",
+          "input": "Challenge 73",
+          "encoding": "hex"
+        }
+      },
+      "optional": true
+    }
+  ]
+}

@@ -34,6 +34,17 @@ Differences from upstream's own image build, all in
 Lab guide: upstream's [README](build/wrongsecrets/app/README.md) and the hints in the app.
 Upstream version and commit: [UPSTREAM.md](UPSTREAM.md).
 
+## Flags
+
+The app runs in CTF mode: entering a challenge's secret gives a code, HMAC-SHA1 of the
+challenge name under a key (no spoilers in this mode). The CyberCTF launcher gives each player
+their own key (`CTF_FLAG_CTF_KEY`, an Isoloom input), which
+[`build/wrongsecrets/ctf-entrypoint.sh`](build/wrongsecrets/ctf-entrypoint.sh) hands to the app
+in a properties file at every start (not the environment, which challenge 60 shows); without one,
+upstream's default `ctf_key` applies. The challenges that run in Docker are listed in
+[`.ctf/objectives.json`](.ctf/objectives.json): a core set of 13 is required, the others are
+optional. The Kubernetes, Vault and cloud challenges are not available here and are not listed.
+
 ## Licence
 
 AGPL-3.0, as WrongSecrets ([LICENSE](LICENSE)), copyright the OWASP WrongSecrets contributors.
