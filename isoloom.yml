@@ -12,29 +12,37 @@ name: wrongsecrets
 
 # Given by the CyberCTF launcher: this player's key, from which every challenge code derives.
 # Without it, upstream's default ctf_key (the development key).
-inputs: [CTF_FLAG_CTF_KEY]
+inputs:
+  CTF_FLAG_CTF_KEY: {}
 
 networks:
-  lab: { cidr: 10.60.123.0/24 }
+  lab: {cidr: 10.60.123.0/24}
 
 machines:
   wrongsecrets:
-    networks: { lab: 10 }
-    services:
-      - { port: 8080, name: web, http: true, publish: 8080 }
-      - { port: 8090, name: mcp, http: true, publish: 8090 }
-    resources: { cpus: 2, memory_mb: 2048 }
-    inputs: [CTF_FLAG_CTF_KEY]
-    docker:
+    networks: {lab: 10}
+    resources: {cpus: 2, memory_mb: 2048}
+    ports:
+      web:
+        port: 8080
+        protocol: http
+        publish: true
+      mcp:
+        port: 8090
+        protocol: http
+        publish: true
+    files:
+      - path: /run/lab/ctf_flag_ctf_key
+        input: CTF_FLAG_CTF_KEY
+    app:
       build: build/wrongsecrets
-
 checks:
-  - { name: the app answers, http: "http://wrongsecrets:8080/", wait: 300 }
-  - { name: the first challenge answers, http: "http://wrongsecrets:8080/challenge/challenge-1" }
+  - {name: the app answers, http: "http://wrongsecrets:8080/", wait: 300}
+  - {name: the first challenge answers, http: "http://wrongsecrets:8080/challenge/challenge-1"}
   - checks/wrongsecrets.sh
 
 message: |
-  OWASP WrongSecrets answers at http://localhost:{{ machines.wrongsecrets.services.0.publish }}/.
+  OWASP WrongSecrets answers at {{ machines.wrongsecrets.ports.web.url }}.
   Start with challenge 1 ("Find the hardcoded password"); the challenges marked for Docker all
-  run here. Its MCP server (challenge 60) answers on port {{ machines.wrongsecrets.services.1.publish }}.
+  run here. Its MCP server (challenge 60) answers on port {{ machines.wrongsecrets.ports.mcp.published }}.
   Each solved challenge gives a code: submit it to CyberCTF.

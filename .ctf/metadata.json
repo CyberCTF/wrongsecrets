@@ -1,8 +1,11 @@
 {
+  "project_name": "cyberlabs-wrongsecrets",
+  "slug": "wrongsecrets",
   "title": "OWASP WrongSecrets",
   "description": "OWASP's app of badly stored secrets: dozens of challenges on finding secrets hardcoded in code, front-end JavaScript, container images and environment, configuration files, logs, Git history and compiled binaries. This is the Docker variant; the Kubernetes, Vault and cloud challenges are not available.",
-  "question": "Find the secrets of the WrongSecrets challenges; each secret entered on its challenge page gives a code to submit.",
-  "category": "MISC",
+  "category": "misc",
   "difficulty": 2,
-  "evidence_kind": "SECRET"
+  "evidence_kind": "SECRET",
+  "capabilities": [],
+  "question": "Find the secrets of the WrongSecrets challenges; each secret entered on its challenge page gives a code to submit."
 }
